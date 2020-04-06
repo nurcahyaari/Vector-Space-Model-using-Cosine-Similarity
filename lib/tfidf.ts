@@ -1,5 +1,10 @@
 "use strict"
 
+/**
+ * TF IDF class for calculating term weightning, using log2
+ * make by nurcahyaari
+ */
+
 class Tfidf {
     private data:number[][];
     private idf:number[][];
@@ -58,7 +63,4 @@ class Tfidf {
     }
 }
 
-console.time();
-const t = new Tfidf([ [ 1,1,0,0,0,0,1 ], [ 1,1,1,1,0,0,0 ], [0,0,0,1,1,1,1] ]);
-console.log(t.weight().sum());
-console.timeEnd();
+export default Tfidf;
