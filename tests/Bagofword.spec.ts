@@ -3,7 +3,7 @@
 import {expect} from "chai";
 import 'mocha';
 
-import {bagOfWord} from '../lib/bagOfWord';
+import bagOfWord from '../lib/bagOfWord';
 
 describe("Get bag of word based on query", function(){
     it("shoult return an object", function(){ 

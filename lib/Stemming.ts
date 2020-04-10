@@ -3,5 +3,10 @@
 const Natural = require("natural");
 
 export default (text: string): string => {
-    return Natural.StemmerId.stem(text);
+    // let word = Natural.PorterStemmer.stem(text);
+    const word = Natural.StemmerId.stem(text);
+    if(word == text){
+        return Natural.LancasterStemmer.stem(text);
+    }
+    return word;
 }

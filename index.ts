@@ -1,5 +1,16 @@
 "use strict";
-import Stemming from './lib/Stemming';
-// import {add} from './lib/calc';
+import stemming from './lib/Stemming';
+import bagOfWord from './lib/bagOfWord';
+import stopword from './lib/Stopword';
+import vsm from './lib/VSM';
+import tfidf from './lib/tfidf';
+import tokenize from './lib/Tokenize'
 
-console.log(Stemming("Makanan"));
+export default {
+    bagOfWord   : bagOfWord,
+    stemming    : stemming,
+    stopword    : stopword,
+    tfidf       : tfidf,
+    tokenize    : tokenize,
+    vsm         : vsm,
+}

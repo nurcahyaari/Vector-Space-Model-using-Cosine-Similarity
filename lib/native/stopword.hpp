@@ -28,7 +28,9 @@ string Stopword::SearchText(){
     stopwordFile.open("./db/stopword.db.txt");
     if (stopwordFile.is_open()){
         while ( getline (stopwordFile,line) ){
-            if(line =)
+            if(line == "mau"){
+                found = false;
+            }
         }
         stopwordFile.close();
     }

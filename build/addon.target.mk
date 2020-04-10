@@ -45,13 +45,13 @@ CFLAGS_OBJC_Debug :=
 CFLAGS_OBJCC_Debug :=
 
 INCS_Debug := \
-	-I/Users/nurcahyaari/.node-gyp/10.16.2/include/node \
-	-I/Users/nurcahyaari/.node-gyp/10.16.2/src \
-	-I/Users/nurcahyaari/.node-gyp/10.16.2/deps/openssl/config \
-	-I/Users/nurcahyaari/.node-gyp/10.16.2/deps/openssl/openssl/include \
-	-I/Users/nurcahyaari/.node-gyp/10.16.2/deps/uv/include \
-	-I/Users/nurcahyaari/.node-gyp/10.16.2/deps/zlib \
-	-I/Users/nurcahyaari/.node-gyp/10.16.2/deps/v8/include \
+	-I/Users/nurcahyaari/Library/Caches/node-gyp/10.16.2/include/node \
+	-I/Users/nurcahyaari/Library/Caches/node-gyp/10.16.2/src \
+	-I/Users/nurcahyaari/Library/Caches/node-gyp/10.16.2/deps/openssl/config \
+	-I/Users/nurcahyaari/Library/Caches/node-gyp/10.16.2/deps/openssl/openssl/include \
+	-I/Users/nurcahyaari/Library/Caches/node-gyp/10.16.2/deps/uv/include \
+	-I/Users/nurcahyaari/Library/Caches/node-gyp/10.16.2/deps/zlib \
+	-I/Users/nurcahyaari/Library/Caches/node-gyp/10.16.2/deps/v8/include \
 	-I$(srcdir)/lib/native \
 	-I$(srcdir)/node_modules/nan
 
@@ -95,13 +95,13 @@ CFLAGS_OBJC_Release :=
 CFLAGS_OBJCC_Release :=
 
 INCS_Release := \
-	-I/Users/nurcahyaari/.node-gyp/10.16.2/include/node \
-	-I/Users/nurcahyaari/.node-gyp/10.16.2/src \
-	-I/Users/nurcahyaari/.node-gyp/10.16.2/deps/openssl/config \
-	-I/Users/nurcahyaari/.node-gyp/10.16.2/deps/openssl/openssl/include \
-	-I/Users/nurcahyaari/.node-gyp/10.16.2/deps/uv/include \
-	-I/Users/nurcahyaari/.node-gyp/10.16.2/deps/zlib \
-	-I/Users/nurcahyaari/.node-gyp/10.16.2/deps/v8/include \
+	-I/Users/nurcahyaari/Library/Caches/node-gyp/10.16.2/include/node \
+	-I/Users/nurcahyaari/Library/Caches/node-gyp/10.16.2/src \
+	-I/Users/nurcahyaari/Library/Caches/node-gyp/10.16.2/deps/openssl/config \
+	-I/Users/nurcahyaari/Library/Caches/node-gyp/10.16.2/deps/openssl/openssl/include \
+	-I/Users/nurcahyaari/Library/Caches/node-gyp/10.16.2/deps/uv/include \
+	-I/Users/nurcahyaari/Library/Caches/node-gyp/10.16.2/deps/zlib \
+	-I/Users/nurcahyaari/Library/Caches/node-gyp/10.16.2/deps/v8/include \
 	-I$(srcdir)/lib/native \
 	-I$(srcdir)/node_modules/nan
 

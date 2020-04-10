@@ -38,23 +38,6 @@ NAN_METHOD(Stopword){
         }
     }
 
-    // ifstream stopwordFile;
-    // string line;
-    // stopwordFile.open("stopword.txt");
-    // if (stopwordFile.is_open()){
-    //     while ( getline (stopwordFile,line) ){
-    //         for(int i = 0; i < textOfArray.size(); i++){
-    //             if(textOfArray[i] == line){
-    //                 textOfArray.erase(textOfArray.begin() + i);
-    //                 i--;
-    //             }
-    //         }
-    //     }
-    //     stopwordFile.close();
-    // } else {
-    //     cout << "File cannot be opened" << endl;
-    //     return;
-    // }
     v8::Local<v8::Array> setTextArray = Nan::New<v8::Array>(textOfArray.size());
     for (uint32_t i = 0; i < setTextArray->Length(); i++) {
         // v8::Local<v8::Value> jsElement = Nan::New(textOfArray[i]);

@@ -9,7 +9,7 @@ import Stemming from './Stemming';
 import Stopword from './Stopword';
 import Token from './Tokenize';
 
-export function bagOfWord(text: string[], query: string):object{
+export default function bagOfWord(text: string[], query: string):{bofQuery:number[], bofDocuments: number[][]}{
     let queryText:string[] = []; // for tokenizing text by indexes
     let tokenText:string[][] = [];
     // tokening query text to array of string
