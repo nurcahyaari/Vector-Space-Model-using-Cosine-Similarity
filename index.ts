@@ -1,16 +1,6 @@
-"use strict";
-import stemming from './lib/Stemming';
-import bagOfWord from './lib/bagOfWord';
-import stopword from './lib/Stopword';
-import vsm from './lib/VSM';
-import tfidf from './lib/tfidf';
-import tokenize from './lib/Tokenize'
-
-export default {
-    bagOfWord   : bagOfWord,
-    stemming    : stemming,
-    stopword    : stopword,
-    tfidf       : tfidf,
-    tokenize    : tokenize,
-    vsm         : vsm,
-}
+export {Stemming} from './lib/Stemming';
+export {CountVectorized} from './lib/CountVectorized';
+export {stopword} from './lib/Stopword';
+export {VSM} from './lib/VSM';
+export {Tfidf} from './lib/tfidf';
+export {Tokenize} from './lib/Tokenize'

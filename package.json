@@ -2,13 +2,21 @@
   "name": "cosine",
   "version": "1.0.0",
   "description": "this module is using for calculating the cosine similarity and vector space model using tfidf",
-  "main": "index.js",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
   "scripts": {
     "start": "tsc && node dist/index.js",
     "dev": "ts-node ",
     "buildnative": "node-gyp build",
     "rebuildnative": "node-gyp rebuild",
-    "test": "mocha -r ts-node/register tests/*.ts"
+    "test": "mocha -r ts-node/register tests/*.ts",
+    "format": "prettier --write \"lib/**/*.ts\" ",
+    "lint": "tslint -p tsconfig.json",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A lib",
+    "postversion": "git push && git push --tags"
   },
   "keywords": [
     "tfidf",
@@ -40,7 +48,11 @@
     "nan": "^2.14.0",
     "node-addon-api": "^2.0.0",
     "node-gyp": "^6.1.0",
+    "prettier": "^2.0.4",
     "ts-node": "^8.7.0",
+    "tslint": "^6.1.1",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.8.3"
-  }
+  },
+  "files" : ["build/**/*"]
 }

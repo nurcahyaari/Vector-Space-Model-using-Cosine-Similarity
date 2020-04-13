@@ -2,10 +2,10 @@
 import {expect} from "chai";
 import "mocha";
 
-import VSM from '../lib/VSM';
+import {VSM} from '../lib/VSM';
 
-describe("Vector Space Model using Cosine SImilarity", function(){ 
-    it("Should get similarity between documents", function(){ 
+describe("Vector Space Model using Cosine SImilarity", () => { 
+    it("Should get similarity between documents", () => { 
         const vsm = new VSM([
             "sistem adalah kumpulan elemen",
             "adalah kumpulan elemen yang saling berinteraksi",

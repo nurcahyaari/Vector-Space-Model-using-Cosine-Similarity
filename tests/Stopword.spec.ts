@@ -1,10 +1,10 @@
 import {expect} from 'chai';
 import 'mocha'
 
-import Stopword from '../lib/Stopword';
+import {stopword} from '../lib/Stopword';
 
-describe("Stopword removal", function(){ 
-    it("Should remove stopword or slankword", function() { 
-        expect(Stopword(["cyng", "negara"])).to.have.members(["negara"]);
+describe("Stopword removal", () => { 
+    it("Should remove stopword or slankword", () =>  { 
+        expect(stopword(["cyng", "negara"])).to.have.members(["negara"]);
     });
 })

@@ -1,4 +1,4 @@
-"use strict"
+'use strict';
 
 /**
  * TF IDF class for calculating term weightning, using log2
@@ -7,66 +7,68 @@
 
 // data is term value that was fillter to be an bag of word
 // data[0] data index zero is an query
-class Tfidf {
-    private data:number[][];
-    private idf:number[][];
+export class Tfidf {
+  private data: number[][];
+  private idf: number[][];
 
-    constructor(val: number[][]){
-        this.data = val;
-        this.idf = [];
+  constructor(val: number[][]) {
+    this.data = val;
+    this.idf = [];
+  }
+
+  getData(): number[][] {
+    return this.data;
+  }
+
+  weight(): Tfidf {
+    // get document frequecy (DocumentsFrequency)
+    const DocumentsFrequency: number[] = [];
+    for (const dataX of this.data) {
+      let indexY = 0;
+      for (const dataY of dataX) {
+        // if document frequency still null
+        if (DocumentsFrequency.length < dataX.length) {
+          if (dataY !== 0) {
+            DocumentsFrequency.push(1);
+          } else {
+            DocumentsFrequency.push(0);
+          }
+        }
+        // if document frequency is not null
+        else {
+          if (dataY !== 0) {
+            DocumentsFrequency[indexY] += 1;
+          }
+        }
+        indexY += 1;
+      }
+    }
+    // get idf
+
+    for (const dataX of this.data) {
+      const tmpIdf: number[] = [];
+      let indexY = 0;
+      for (const dataY of dataX) {
+        tmpIdf.push(dataY * (Math.log2((this.data.length - 1) / DocumentsFrequency[indexY]) + 1));
+      }
+      this.idf.push(tmpIdf);
+      indexY += 1;
     }
 
-    getData():number[][]{
-        return this.data;
+    return this;
+  }
+  getIdf(): number[][] {
+    return this.idf;
+  }
+  sum(): number[] {
+    const TotalTFIDF: number[] = [];
+    for (const idfX of this.idf) {
+      let sum = 0;
+      for (const idfY of idfX) {
+        sum += idfY;
+      }
+      TotalTFIDF.push(sum);
     }
-
-    weight():Tfidf{
-        // get document frequecy (DF)
-        let df:number[] = []
-        for(let x = 1; x < this.data.length; x++){
-            for(let y in this.data[x]){
-                // if document frequency still null
-                if(df.length < this.data[x].length){
-                    if(this.data[x][y] !== 0){
-                        df.push(1);
-                    } else {
-                        df.push(0);
-                    }
-                }
-                // if document frequency is not null 
-                else {
-                    if(this.data[x][y] !== 0){
-                        df[y] += 1;
-                    }
-                }
-            }
-        }
-        // get idf
-        
-        for(let x in this.data){
-            let tmpIdf:number[] = [];
-            for(let y in this.data[x]){
-                tmpIdf.push(this.data[x][y] * ((Math.log2((this.data.length - 1)/df[y])) + 1));
-            }
-            this.idf.push(tmpIdf);
-        }
-        
-        return this;
-    }
-    getIdf():number[][]{
-        return this.idf;
-    }
-    sum():number[]{
-        let totalTfIdf:number[] = [];
-        for(let x in this.idf){
-            let sum = 0;
-            for(let y in this.idf[x]){
-                sum += this.idf[x][y];
-            }
-            totalTfIdf.push(sum);
-        }
-        return totalTfIdf;
-    }
+    return TotalTFIDF;
+  }
 }
-
-export default Tfidf;

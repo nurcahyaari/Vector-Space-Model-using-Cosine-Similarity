@@ -1,9 +1,9 @@
-"use strict"
+'use strict';
 
-import {WordTokenizer} from 'natural';
+import { WordTokenizer } from 'natural';
 
-export default (text: string):string[] => {
-    const tokenizer = new WordTokenizer();
-    const textToLower = text.toLowerCase();
-    return tokenizer.tokenize(textToLower);
-}
+export function Tokenize(text: string): string[] {
+  const tokenizer = new WordTokenizer();
+  const textToLower = text.toLowerCase();
+  return tokenizer.tokenize(textToLower);
+};
