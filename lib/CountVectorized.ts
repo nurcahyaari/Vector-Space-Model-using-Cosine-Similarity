@@ -7,17 +7,13 @@
 'use strict';
 import { Stemming } from './Stemming';
 import { stopword } from './Stopword';
-import {Tokenize} from './Tokenize';
+import { Tokenize } from './Tokenize';
 
 export function CountVectorized(
   text: string[],
-  query: string,
-): { CountVectorizedQuery: number[]; CountVectorizedDocuments: number[][] } {
+): object[][] {
   let TextQuery: string[] = []; // for tokenizing text by indexes
   let TextToken: string[][] = []; // for tokenize by word
-
-  // tokening query text to array of string
-  const TokenizedQuery: string[] = Tokenize(query); // query text was tokenizing
 
   // tokening text array to array of string
   TextQuery = text.map((data) => {
@@ -27,13 +23,11 @@ export function CountVectorized(
   TextToken = TextQuery.map((data) => {
     return Tokenize(data);
   });
-
+  
+  // tslint:disable-next-line:no-console
+  // console.log(TextToken);
   // stop word
   let StopwordDocuments: string[][] = [];
-  let StopwordQuery: string[] = [];
-
-  // stopword removal for query document
-  StopwordQuery = stopword(TokenizedQuery);
 
   // stopword removal for text documents
   StopwordDocuments = TextToken.map((data) => {
@@ -42,11 +36,6 @@ export function CountVectorized(
 
   // Stemming word
   let StemmedDocuments: string[][] = [];
-  let StemmedQuery: string[] = [];
-
-  StemmedQuery = StopwordQuery.map((data) => {
-    return Stemming(data);
-  });
 
   StemmedDocuments = StopwordDocuments.map((stopwordByDocs) => {
     return stopwordByDocs.map((stopwordByWord) => {
@@ -74,39 +63,32 @@ export function CountVectorized(
       }
     }
   }
-
+  // tslint:disable-next-line:no-console
+  // console.log("Stemmed" , StemmedDocuments)
   // get bag of word value from documents and query
-  const CountVectorizedDocuments: number[][] = [];
-  const CountVectorizedQuery: number[] = [];
+  const CountVectorizedDocuments: object[][] = [];
+  // const CountVectorizedQuery: number[] = [];
 
   // bof of documents
   for (const stemDocsByIndex of StemmedDocuments) {
-    const TemporaryCountVectorizedDocumens: number[] = [];
+    const TemporaryCountVectorizedDocumens: object[] = [];
     for (const docs of documents) {
-      let foundData: number = 0;
+      const document = {
+        [docs] : 0
+      };
+      // let foundData: number = 0;
       for (const stemDocsByWords of stemDocsByIndex) {
         if (stemDocsByWords === docs) {
-          foundData += 1;
+          // tslint:disable-next-line:no-unused-expression
+          document[Object.keys(document)[0]] += 1;
         }
       }
-      TemporaryCountVectorizedDocumens.push(foundData);
+      TemporaryCountVectorizedDocumens.push(document);
     }
     CountVectorizedDocuments.push(TemporaryCountVectorizedDocumens);
   }
-
-  // bag of word query
-  for (const docs of documents) {
-    let foundData: number = 0;
-    for (const stemQueryByWords of StemmedQuery) {
-      if (docs === stemQueryByWords) {
-        foundData += 1;
-      }
-    }
-    CountVectorizedQuery.push(foundData);
-  }
-
-  return {
-    CountVectorizedQuery,
-    CountVectorizedDocuments,
-  };
+  
+  // tslint:disable-next-line:no-console
+  // console.log(CountVectorizedDocuments)
+  return CountVectorizedDocuments;
 }

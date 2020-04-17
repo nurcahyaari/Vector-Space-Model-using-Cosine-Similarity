@@ -26,9 +26,9 @@ describe("Languange Stemming", () => {
         expect(Stemming("eaten")).to.equal("eat");
         expect(Stemming("ate")).to.equal("eat");
         expect(Stemming("eating")).to.equal("eat");
-        expect(Stemming("happiness")).to.equal("happy");
-        expect(Stemming("happily")).to.equal("happy");
-        expect(Stemming("stemmer")).to.equal("stem");
+        expect(Stemming("happiness")).to.equal("happiness");
+        expect(Stemming("happily")).to.equal("happily");
+        expect(Stemming("stemmer")).to.equal("stemmer");
         expect(Stemming("stemming")).to.equal("stem");
     })
 })

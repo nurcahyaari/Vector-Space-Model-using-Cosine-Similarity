@@ -6,6 +6,7 @@ import * as path from 'path';
 export function stopword(text: string[]): string[] {
   const idStopword = readFileSync(path.join(__dirname, 'db/id-stopword.txt'), 'utf8').split('\n');
   const enStopword = readFileSync(path.join(__dirname, 'db/en-stopword.txt'), 'utf8').split('\n');
-  const words = Stopword(text, idStopword);
+  const stopwordDictionary = [...idStopword, ...enStopword];
+  const words = Stopword(text, stopwordDictionary);
   return words;
 }

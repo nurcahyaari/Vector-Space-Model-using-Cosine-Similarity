@@ -1,18 +1,19 @@
 {
-  "name": "cosine",
-  "version": "1.0.0",
+  "name": "vector-space-model-similarity",
+  "version": "1.0.1",
   "description": "this module is using for calculating the cosine similarity and vector space model using tfidf",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "scripts": {
     "start": "tsc && node dist/index.js",
     "dev": "ts-node ",
+    "build": "tsc",
     "buildnative": "node-gyp build",
     "rebuildnative": "node-gyp rebuild",
     "test": "mocha -r ts-node/register tests/*.ts",
     "format": "prettier --write \"lib/**/*.ts\" ",
     "lint": "tslint -p tsconfig.json",
-    "prepare": "npm run build",
+    "prepare": "npm run build && cp lib/native/addon.d.ts build/Release",
     "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint",
     "version": "npm run format && git add -A lib",
@@ -29,14 +30,9 @@
   "license": "MIT",
   "dependencies": {
     "@types/natural": "^0.6.3",
-    "@types/sqlite3": "^3.1.6",
-    "akarata": "^0.2.1",
     "install": "^0.13.0",
-    "nalapa": "^1.11.0",
+    "lemmatizer": "0.0.1",
     "natural": "^0.6.3",
-    "sastrawijs": "^1.0.3",
-    "sqlite3": "^4.1.1",
-    "translate": "^1.1.2",
     "tslib": "^1.11.1"
   },
   "gypfile": true,
@@ -54,5 +50,7 @@
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.8.3"
   },
-  "files" : ["build/**/*"]
+  "files": [
+    "build/**/*"
+  ]
 }

@@ -4,33 +4,66 @@ import { CountVectorized } from './CountVectorized';
 
 export class VSM {
   private documents: string[];
-  private query: string;
-  constructor(documents: string[], query: string) {
+  private tfidfWeight: object[][];
+  private tfidfPowWeight: object[][];
+  
+  constructor(documents: string[]) {
     this.documents = documents;
-    this.query = query;
+    this.tfidfWeight = [];
+    this.tfidfPowWeight = [];
+    
+    this.dimension();
   }
 
-  consine(): number[][] {
-    const Vectorized = CountVectorized(this.documents, this.query);
+  getDocuments():string[] {
+    return this.documents;
+  }
 
-    const bofNumber: number[][] = [Vectorized.CountVectorizedQuery];
-    Vectorized.CountVectorizedDocuments.map((x) => {
-      bofNumber.push(x);
-    });
+  getWeightTfidf(): object[][] {
+    return this.tfidfWeight;
+  }
 
-    const tfidf = new Tfidf(bofNumber).weight().getIdf();
+  getPowTfidf() : object[][] {
+    return this.tfidfPowWeight;
+  }
 
-    const powTfidf: number[][] = tfidf.map((x) => {
-      let idx: number[];
-      idx = x.map((y) => y ** 2);
+  dimension() {
+    const Vectorized = CountVectorized(this.documents);
+    
+    const tfidf = new Tfidf(Vectorized).weight().getIdf();
+    this.tfidfWeight = tfidf;
+    // tslint:disable-next-line:no-console
+    // console.log(tfidf);
+    
+    const powTfidf: any[][] = tfidf.map((x, indexX): any => {
+      let idx: object[];
+      idx = x.map((y, indexY): object => { 
+        return {
+          [Object.keys(y)[0]] : y[Object.keys(y)[0]] ** 2
+        }
+      });
       return idx;
     });
-
-    const similarity: number[][] = [];
-    for (let i = 1; i < powTfidf.length; i++) {
-      similarity.push(powTfidf[i].map((data, index) => powTfidf[0][index] * data));
-    }
-
-    return similarity;
+    this.tfidfPowWeight = powTfidf;
+    
   }
+
 }
+
+// (() => {
+//   const vsm:any = new VSM([
+//     "sistem cerdas adalah kumpulan elemen",
+//     "adalah kumpulan elemen yang saling berinteraksi",
+//     "Sistem berinteraksi untuk mencapai tujuan"
+//   ]);
+  
+//   // tslint:disable-next-line:no-console
+//   // console.log(vsm.getDocuments());
+//   // tslint:disable-next-line:no-console
+//   // console.log(vsm.getWeightTfidf());
+//   // tslint:disable-next-line:no-console
+//   // console.log(vsm.getSumTfidf());
+
+//   // tslint:disable-next-line:no-console
+//   // console.log(vsm.getSqrtTfidf());
+// })()
