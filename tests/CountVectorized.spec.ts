@@ -20,4 +20,8 @@ describe("Get bag of word based on query", () => {
             .to.have.members([1,0,1,1])
             .to.have.members([1,0,0,0])
     });
+
+    // it("Should return Vector of query from documents length", () => {
+    //     expect(CountVectorized(['sistem']))
+    // })
 })
