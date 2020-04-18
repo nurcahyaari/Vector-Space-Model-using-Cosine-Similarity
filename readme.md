@@ -1,6 +1,11 @@
 Library for calculate vector space model using cosine similarity..
 for now i test this library using indonesian languange. so i didn't testing it with english data. but i was added english lemmatize document. but maybe i will change it to porter algorithm
 
+## How to install
+```js
+npm install vector-space-model-similarity --save
+```
+
 ## How to use
 
 first we import our function
