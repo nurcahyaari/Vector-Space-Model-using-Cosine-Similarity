@@ -1,5 +1,12 @@
 
-export function Cosine(queries:any[][], documents:any[][]): number[] {
+/**
+ *  get data from parameter.
+ *  parameter rule : 
+ * queries : [{sistem : 1,584962501}, {cerdas : 2,584962501}]
+ * documents : [[{sistem : 1,584962501}, {cerdas : 2,584962501}], [{sistem : 1,584962501}, {cerdas : 2,584962501}]]
+ * query and documents is any of array but its actually an object or key value data
+ */
+export function Cosine(queries:any[], documents:any[][]): number[] {
     // get sum of documents
     const documentsSum = documents.map((document) => {
         let idx: number = 0;
@@ -9,38 +16,23 @@ export function Cosine(queries:any[][], documents:any[][]): number[] {
         }
         return idx;
     });
-    // tslint:disable-next-line:no-console
-    // console.log(documentsSum);
-    // get sum of queries
-    const queriesSum = queries.map((query) => {
-        let idx: number = 0;
-        for(const word of query){
-          // tslint:disable-next-line:no-console
-          idx += word[Object.keys(word)[0]];
-        }
-        return idx;
-    });
     
-    // this.tfidfPowSum = powTfidf.map((x, indexX): any => {
-    //     let idx: number = 0;
-    //     for(const y of x){
-    //       // tslint:disable-next-line:no-console
-    //       idx += y[Object.keys(y)[0]];
-    //     }
-    //     return idx;
-    // })
+    // get sum of queries
+    let queriesSum: number = 0;
+    for(const query of queries) {
+        queriesSum += query[Object.keys(query)[0]];
+    }
     
     // get sqrt of documents
     const documentsSqrt = documentsSum.map(value => {
         return Math.sqrt(value);
     });
     
-    const queriesSqrt = queriesSum.map(value => {
-        return Math.sqrt(value);
-    })
+    // get sqrt of queries
+    const queriesSqrt = Math.sqrt(queriesSum);
 
     
-    // Query * Documents
+    // // Query * Documents
     const queriesMultiDocuments: any[][] = [];
 
     for(const document of documents) {
@@ -49,12 +41,10 @@ export function Cosine(queries:any[][], documents:any[][]): number[] {
         for(const wordDocument of document) {
             const docidf: number[] = [];
             for(const query of queries) {
-                for(const wordQuery of query) {
-                    if(Object.keys(wordDocument)[0] === Object.keys(wordQuery)[0]) {
-                        tmpWordDocument.push({
-                            [Object.keys(wordDocument)[0]] : wordDocument[Object.keys(wordDocument)[0]] * wordQuery[Object.keys(wordQuery)[0]]
-                        })
-                    }
+                if(Object.keys(wordDocument)[0] === Object.keys(query)[0]) {
+                    tmpWordDocument.push({
+                        [Object.keys(wordDocument)[0]] : wordDocument[Object.keys(wordDocument)[0]] * query[Object.keys(query)[0]]
+                    })
                 }
             }
             queryidf.push(docidf);
@@ -74,7 +64,7 @@ export function Cosine(queries:any[][], documents:any[][]): number[] {
 
     // get sqrt of documents
     const queriesMultiDocumentsSqrt = queriesMultiDocumentsSum.map((value, index) => {
-        return (value / (queriesSqrt[0] * documentsSqrt[index]));
+        return (value / (queriesSqrt * documentsSqrt[index]));
     });
     
     return queriesMultiDocumentsSqrt;
