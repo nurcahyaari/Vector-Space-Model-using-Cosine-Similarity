@@ -4,7 +4,6 @@ import { CountVectorized } from './CountVectorized';
 
 export class VSM extends Tfidf {
   private documents: string[];
-  private idfWeight: any[][];
   private idfPowWeight: any[][];
   // private idfVectorized : any[];
   
@@ -12,7 +11,6 @@ export class VSM extends Tfidf {
     const Vectorized = CountVectorized(documents);
     super(Vectorized, idfVector);
     this.documents = documents;
-    this.idfWeight = [];
     this.idfPowWeight = [];
     // this.idfVectorized = [];
 
@@ -40,7 +38,7 @@ export class VSM extends Tfidf {
   }
 
   // get vector space
-  dimension() {
+  private dimension() {
     const idfWeight = this.getWeightVectorized();
     
     const powTfidf: any[][] = idfWeight.map((x, indexX): any => {
@@ -56,21 +54,3 @@ export class VSM extends Tfidf {
   }
 
 }
-
-// (() => {
-//   const vsm:any = new VSM([
-//     "sistem cerdas adalah kumpulan elemen",
-//     "adalah kumpulan elemen yang saling berinteraksi",
-//     "Sistem berinteraksi untuk mencapai tujuan"
-//   ]);
-  
-//   // tslint:disable-next-line:no-console
-//   // console.log(vsm.getDocuments());
-//   // tslint:disable-next-line:no-console
-//   // console.log(vsm.getWeightTfidf());
-//   // tslint:disable-next-line:no-console
-//   // console.log(vsm.getSumTfidf());
-
-//   // tslint:disable-next-line:no-console
-//   // console.log(vsm.getSqrtTfidf());
-// })()

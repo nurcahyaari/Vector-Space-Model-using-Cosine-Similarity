@@ -23,7 +23,7 @@ export class Tfidf {
     return this.data;
   }
 
-  weight() {
+  private weight() {
     // get document frequecy (DocumentsFrequency)
     const DocumentsFrequency: any[] = [];
     
