@@ -9,18 +9,21 @@
 // data[0] data index zero is an query
 export class Tfidf {
   private data: any[][];
-  private idf: any[][];
+  private idfVector: any[];
+  private weightVectorized: any[][];
 
-  constructor(val: any[][]) {
+  constructor(val: any[][], idfVector: any[] = []) {
     this.data = val;
-    this.idf = [];
+    this.idfVector = idfVector;
+    this.weightVectorized = [];
+    this.weight();
   }
 
   getData(): any[][] {
     return this.data;
   }
 
-  weight(): Tfidf {
+  weight() {
     // get document frequecy (DocumentsFrequency)
     const DocumentsFrequency: any[] = [];
     
@@ -50,31 +53,41 @@ export class Tfidf {
       }
     }
 
-    // tslint:disable-next-line:no-console
-    // console.log("Document Freq : ",DocumentsFrequency, "\n");
-    // get idf (Inverse Document Frequency)
-    for (const dataX of this.data) {
-      const tmpIdf: object[] = [];
-      for (const [indexY, dataY] of dataX.entries()) {
-        tmpIdf.push({
-          [Object.keys(dataY)[0]] : dataY[Object.keys(dataY)[0]] * (Math.log2((this.data.length) / DocumentsFrequency[indexY][Object.keys(DocumentsFrequency[indexY])[0]]) + 1)
-        });
-        // tslint:disable-next-line:no-console
-        // console.log("TMP IDF Freq : ",tmpIdf, "\n");
-      }
-      this.idf.push(tmpIdf);
+    // get IDF (Inverse Document Frequency)
+    if(this.idfVector.length === 0) {
+      this.idfVector = DocumentsFrequency.map(value => {
+        return {
+          [Object.keys(value)[0]] : (Math.log2(this.data.length / value[Object.keys(value)[0]]) + 1)
+        }
+      });
     }
-    // tslint:disable-next-line:no-console
-    // console.log("IDF Freq : ",this.idf, "\n");
-
-    return this;
+    
+    // get document weight 
+    for (const dataX of this.data) {
+      const tmpWeightVector: any[] = [];
+      let tmpIdf: number = 0;
+      for (const [indexY, dataY] of dataX.entries()) {
+        // get IDF per word token
+        tmpIdf = 0;
+        tmpWeightVector.push({
+          [Object.keys(dataY)[0]] : dataY[Object.keys(dataY)[0]] * this.idfVector[indexY][Object.keys(this.idfVector[indexY])[0]]
+        });
+        
+      }
+      this.weightVectorized.push(tmpWeightVector);
+    }
   }
-  getIdf(): any[][] {
-    return this.idf;
+  
+  getIdfVectorized(): any[][] {
+    return this.idfVector;
+  }
+
+  getWeightVectorized(): any[][] {
+    return this.weightVectorized;
   }
   sum(): number[] {
     const TotalTFIDF: number[] = [];
-    for (const idfX of this.idf) {
+    for (const idfX of this.weightVectorized) {
       let sum = 0;
       for (const idfY of idfX) {
         sum += idfY[Object.keys(idfY)[0]];
