@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/NurcahyaAri/Vector-Space-Model-using-Cosine-Similarity/tree/master.svg?style=svg&circle-token=302a8cbf10f409c8e06648f60d7aabd75849785f)](https://circleci.com/gh/NurcahyaAri/Vector-Space-Model-using-Cosine-Similarity/tree/master)
+
 Library for calculate vector space model using cosine similarity..
 for now i test this library using indonesian languange. so i didn't testing it with english data. but i was added english lemmatize document. but maybe i will change it to porter algorithm
 
