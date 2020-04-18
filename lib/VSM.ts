@@ -2,40 +2,48 @@
 import { Tfidf } from './tfidf';
 import { CountVectorized } from './CountVectorized';
 
-export class VSM {
+export class VSM extends Tfidf {
   private documents: string[];
-  private tfidfWeight: object[][];
-  private tfidfPowWeight: object[][];
+  private idfWeight: any[][];
+  private idfPowWeight: any[][];
+  // private idfVectorized : any[];
   
-  constructor(documents: string[]) {
+  constructor(documents: string[], idfVector:any[] = []) {
+    const Vectorized = CountVectorized(documents);
+    super(Vectorized, idfVector);
     this.documents = documents;
-    this.tfidfWeight = [];
-    this.tfidfPowWeight = [];
-    
+    this.idfWeight = [];
+    this.idfPowWeight = [];
+    // this.idfVectorized = [];
+
     this.dimension();
   }
 
+  // get current documents
   getDocuments():string[] {
     return this.documents;
   }
 
-  getWeightTfidf(): object[][] {
-    return this.tfidfWeight;
+  // get IDF from document
+  getIdfVectorized(): any[] {
+    return super.getIdfVectorized();
   }
 
-  getPowTfidf() : object[][] {
-    return this.tfidfPowWeight;
+  // get weight of documents. IDF * Document Term
+  getWeightVectorized(): any[][] {
+    return super.getWeightVectorized();
   }
 
+  // get idf was power 
+  getPowWeightVectorized() : any[][] {
+    return this.idfPowWeight;
+  }
+
+  // get vector space
   dimension() {
-    const Vectorized = CountVectorized(this.documents);
+    const idfWeight = this.getWeightVectorized();
     
-    const tfidf = new Tfidf(Vectorized).weight().getIdf();
-    this.tfidfWeight = tfidf;
-    // tslint:disable-next-line:no-console
-    // console.log(tfidf);
-    
-    const powTfidf: any[][] = tfidf.map((x, indexX): any => {
+    const powTfidf: any[][] = idfWeight.map((x, indexX): any => {
       let idx: object[];
       idx = x.map((y, indexY): object => { 
         return {
@@ -44,8 +52,7 @@ export class VSM {
       });
       return idx;
     });
-    this.tfidfPowWeight = powTfidf;
-    
+    this.idfPowWeight = powTfidf;
   }
 
 }
