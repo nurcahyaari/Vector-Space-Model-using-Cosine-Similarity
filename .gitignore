@@ -5,3 +5,4 @@ tslint.json
 .prettierrc
 dist
 .DS_Store
+binding.gyp

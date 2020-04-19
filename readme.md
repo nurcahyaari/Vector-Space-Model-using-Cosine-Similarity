@@ -34,7 +34,7 @@ const cosine = Cosine(query.getPowWeightVectorized()[0], document.getPowWeightVe
 ```
 ## descriptions
 example of vsm calculating using excel.
-![Image description](https://github.com/NurcahyaAri/Vector-Space-Model-using-Cosine-Similarity/blob/master/assets/vsm.png)
+![Image description](https://raw.githubusercontent.com/NurcahyaAri/Vector-Space-Model-using-Cosine-Similarity/master/assets/vsm.png?token=AGBEPV6I4WIVN4E7YJCH6GC6UTSV6)
 
 
 
@@ -54,7 +54,7 @@ documents represented about our document, and idfVector is the idf from our vect
 
 getIdfVectorized will return this array. but not array of number, it's array of object. the key is the word and the value is the IDF value
 
-![Image description](https://github.com/NurcahyaAri/Vector-Space-Model-using-Cosine-Similarity/blob/master/assets/idfvectorized.png)
+![Image description](https://raw.githubusercontent.com/NurcahyaAri/Vector-Space-Model-using-Cosine-Similarity/master/assets/idfvectorized.png?token=AGBEPV2HCTH6BXK6C6VSAQC6UTSVC)
 
 ```js
 getIdfVectorized() // <-- this is method from TFIDF Class.
@@ -63,7 +63,7 @@ getIdfVectorized() // <-- this is method from TFIDF Class.
 getWeightVectorized() will return idf value. and the return is an multidimension array
 
 
-![Image description](https://github.com/NurcahyaAri/Vector-Space-Model-using-Cosine-Similarity/blob/master/assets/weight-idf.png)
+![Image description](https://raw.githubusercontent.com/NurcahyaAri/Vector-Space-Model-using-Cosine-Similarity/master/assets/weight-idf.png?token=AGBEPV5TKA5SKIDPJWMH4ZC6UTSSM)
 
 
 ```js
@@ -72,7 +72,7 @@ getWeightVectorized() // <-- return weight of documents
 
 getPowWeightVectorized() will return Exponent of IDF from the documents
 
-![Image description](https://github.com/NurcahyaAri/Vector-Space-Model-using-Cosine-Similarity/blob/master/assets/pow-idf-vectorized.png)
+![Image description](https://raw.githubusercontent.com/NurcahyaAri/Vector-Space-Model-using-Cosine-Similarity/master/assets/pow-idf-vectorized.png?token=AGBEPV5CE2RIPXNXDMVQA6K6UTSWY)
 
 ```js
 getPowWeightVectorized() // <-- return weight of documents
