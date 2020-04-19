@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/NurcahyaAri/Vector-Space-Model-using-Cosine-Similarity/tree/master.svg?style=svg&circle-token=302a8cbf10f409c8e06648f60d7aabd75849785f)](https://circleci.com/gh/NurcahyaAri/Vector-Space-Model-using-Cosine-Similarity/tree/master)
+[![CircleCI](https://circleci.com/gh/NurcahyaAri/Vector-Space-Model-using-Cosine-Similarity/tree/master.svg?style=shield&circle-token=302a8cbf10f409c8e06648f60d7aabd75849785f)](https://circleci.com/gh/NurcahyaAri/Vector-Space-Model-using-Cosine-Similarity/tree/master)
 
 Library for calculate vector space model using cosine similarity..
 for now i test this library using indonesian languange. so i didn't testing it with english data. but i was added english lemmatize document. but maybe i will change it to porter algorithm
@@ -34,7 +34,7 @@ const cosine = Cosine(query.getPowWeightVectorized()[0], document.getPowWeightVe
 ```
 ## descriptions
 example of vsm calculating using excel.
-![Image description](assets/vsm.png)
+![Image description](https://github.com/NurcahyaAri/Vector-Space-Model-using-Cosine-Similarity/blob/master/assets/vsm.png)
 
 
 
@@ -54,7 +54,7 @@ documents represented about our document, and idfVector is the idf from our vect
 
 getIdfVectorized will return this array. but not array of number, it's array of object. the key is the word and the value is the IDF value
 
-![Image description](assets/idfvectorized.png)
+![Image description](https://github.com/NurcahyaAri/Vector-Space-Model-using-Cosine-Similarity/blob/master/assets/idfvectorized.png)
 
 ```js
 getIdfVectorized() // <-- this is method from TFIDF Class.
@@ -63,7 +63,7 @@ getIdfVectorized() // <-- this is method from TFIDF Class.
 getWeightVectorized() will return idf value. and the return is an multidimension array
 
 
-![Image description](assets/weight-idf.png)
+![Image description](https://github.com/NurcahyaAri/Vector-Space-Model-using-Cosine-Similarity/blob/master/assets/weight-idf.png)
 
 
 ```js
@@ -72,7 +72,7 @@ getWeightVectorized() // <-- return weight of documents
 
 getPowWeightVectorized() will return Exponent of IDF from the documents
 
-![Image description](assets/pow-idf-vectorized.png)
+![Image description](https://github.com/NurcahyaAri/Vector-Space-Model-using-Cosine-Similarity/blob/master/assets/pow-idf-vectorized.png)
 
 ```js
 getPowWeightVectorized() // <-- return weight of documents

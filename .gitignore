@@ -3,3 +3,5 @@ build
 tsconfig.json 
 tslint.json 
 .prettierrc
+dist
+.DS_Store

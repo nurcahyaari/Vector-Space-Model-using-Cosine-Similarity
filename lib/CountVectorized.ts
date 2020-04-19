@@ -6,7 +6,7 @@
 
 'use strict';
 import { Stemming } from './Stemming';
-import { stopword } from './Stopword';
+import { Stopword } from './Stopword';
 import { Tokenize } from './Tokenize';
 
 export function CountVectorized(
@@ -31,7 +31,7 @@ export function CountVectorized(
 
   // stopword removal for text documents
   StopwordDocuments = TextToken.map((data) => {
-    return stopword(data);
+    return Stopword(data);
   });
 
   // Stemming word
