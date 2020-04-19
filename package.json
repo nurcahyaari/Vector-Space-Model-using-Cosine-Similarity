@@ -33,7 +33,6 @@
     "natural": "^0.6.3",
     "tslib": "^1.11.1"
   },
-  "gypfile": true,
   "devDependencies": {
     "@types/chai": "^4.2.11",
     "@types/mocha": "^7.0.2",
