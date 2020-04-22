@@ -13,8 +13,5 @@ export function Stopword(text: string[]): string[] {
       return value;
     }
   })
-  // const words = Stopword(text, stopwordDictionary);
-  // tslint:disable-next-line:no-console
-  // console.timeEnd();
   return words;
 }

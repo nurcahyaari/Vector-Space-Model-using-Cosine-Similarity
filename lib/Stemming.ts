@@ -10,6 +10,6 @@ export function Stemming(text: string): string {
 
   if (word === text && !IndonesiaiBaseword.includes(word)) {
     return Natural.PorterStemmer.stem(text)
-  }
+  } else 
   return word;
 }

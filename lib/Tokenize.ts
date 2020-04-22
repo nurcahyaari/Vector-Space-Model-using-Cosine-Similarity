@@ -8,14 +8,40 @@ function urlRemoval(text: string) : string {
   return text.replace(pattern, "");
 }
 
+function singleCharacterRemoval(text : string) : string{
+  const pattern = /(^| ).( |$)/g;
+
+  return text.replace(pattern, "");
+}
+
+function charactersInBracketsRemoval(text : string) : string {
+  const pattern = / *\([^)]*\) */g;
+  return text.replace(pattern, "");
+}
+
 function characterRemoval(text: string) : string {
   const pattern = /[^a-zA-Z0-9 ]/g;
 
   return text.replace(pattern, "");  
 }
 
+function numberRemoval(text : string) : string {
+  const pattern = /\d/g;
+  return text.replace(pattern, ""); 
+}
+
 export function Tokenize(text: string): string[] {
   const tokenizer = new WordTokenizer();
   const textToLower = text.toLowerCase();
-  return tokenizer.tokenize(characterRemoval(urlRemoval(textToLower)));
+  return tokenizer.tokenize(
+    charactersInBracketsRemoval(
+      numberRemoval(
+        singleCharacterRemoval(
+          characterRemoval(
+            urlRemoval(textToLower)
+            )
+          )
+        )
+      )
+    );
 };
