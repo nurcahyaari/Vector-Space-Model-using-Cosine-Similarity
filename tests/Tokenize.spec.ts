@@ -35,7 +35,7 @@ describe('Tokenizers Testing', () => {
       });
     
       it('should swallow duplicate punctuation', () =>  {
-        expect(Tokenize('i shal... pause')).to.deep.equal(['i', 'shal', 'pause']);
+        expect(Tokenize('i shal... pause')).to.deep.equal(['shal', 'pause']);
       });  
     
 });
