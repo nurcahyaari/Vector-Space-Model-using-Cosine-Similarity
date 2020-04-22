@@ -19,9 +19,9 @@ export class Tfidf {
     this.weight();
   }
 
-  getData(): any[][] {
-    return this.data;
-  }
+  // getData(): any[][] {
+  //   return this.data;
+  // }
 
   private weight() {
     // get document frequecy (DocumentsFrequency)

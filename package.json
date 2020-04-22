@@ -1,6 +1,6 @@
 {
   "name": "vector-space-model-similarity",
-  "version": "1.0.151",
+  "version": "1.0.152",
   "description": "this module is using for calculating the cosine similarity and vector space model using tfidf",
   "main": "build/index.js",
   "types": "build/index.d.ts",

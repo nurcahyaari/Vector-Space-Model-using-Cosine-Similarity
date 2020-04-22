@@ -3,14 +3,13 @@ import { Tfidf } from './tfidf';
 import { CountVectorized } from './CountVectorized';
 
 export class VSM extends Tfidf {
-  private documents: string[];
+  // private documents: string[];
   private idfPowWeight: any[][];
   // private idfVectorized : any[];
   
   constructor(documents: string[], idfVector:any[] = []) {
     const Vectorized = CountVectorized(documents);
     super(Vectorized, idfVector);
-    this.documents = documents;
     this.idfPowWeight = [];
     // this.idfVectorized = [];
 
@@ -18,9 +17,9 @@ export class VSM extends Tfidf {
   }
 
   // get current documents
-  getDocuments():string[] {
-    return this.documents;
-  }
+  // getDocuments():string[] {
+  //   return this.documents;
+  // }
 
   // get IDF from document
   getIdfVectorized(): any[] {
@@ -41,7 +40,7 @@ export class VSM extends Tfidf {
   private dimension() {
     const idfWeight = this.getWeightVectorized();
     
-    const powTfidf: any[][] = idfWeight.map((x, indexX): any => {
+    let powTfidf: any[][] = idfWeight.map((x, indexX): any => {
       let idx: object[];
       idx = x.map((y, indexY): object => { 
         return {
@@ -51,6 +50,7 @@ export class VSM extends Tfidf {
       return idx;
     });
     this.idfPowWeight = powTfidf;
+    powTfidf = [];
   }
 
 }
